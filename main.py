@@ -19,12 +19,24 @@ reddit = praw.Reddit(client_id='LK_PUjO05BqFSg', client_secret='FuE_G7UhRkvIsVNu
 # testing some capabilities of praw
 # - get the most recent 15 hot posts from a subreddit
 
-sub = 'Reformed'
+sub = 'ffxiv'
 
-hot_posts = reddit.subreddit(sub).hot(limit=15)
-for post in hot_posts:
+# categorize by 'hot' posts
+# hot_posts = reddit.subreddit(sub).hot(limit=15)
+# for post in hot_posts:
+#    print(post.title)
+
+# categorize by 'new' posts
+
+new_posts = reddit.subreddit(sub).new(limit=15)
+for post in new_posts:
     print(post.title)
 
 # stuff to do - go over the reference document, look at a sentiment analysis tutorial
 
-# future project will scrape (all of?) reddit for a keyword or key phrase and conduct sentiment analysis on comments it finds
+# current project is to scrape reddit for [topic] and see what people feel about [topic]
+# current subreddit-topic pairs: reformed-baptists, [unknown]-artificial meat, rats-rats
+# * need to be able to scrape a subreddit, not just most recent but all
+# * grab comments (not just top level but all)
+
+# future project will scrape (all of) reddit ( for a keyword or key phrase and conduct sentiment analysis on comments it finds
