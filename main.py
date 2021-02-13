@@ -19,6 +19,11 @@ reddit = praw.Reddit(client_id='LK_PUjO05BqFSg', client_secret='FuE_G7UhRkvIsVNu
 # testing some capabilities of praw
 # - get the most recent 15 hot posts from a subreddit
 
+# find a relevant comment/post 
+# grab comments
+# parse the comments/clean the data for NLP
+
+
 sub = 'ffxiv'
 
 # categorize by 'hot' posts
