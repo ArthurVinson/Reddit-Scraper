@@ -16,7 +16,22 @@ import nltk
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from nltk.tokenize import word_tokenize, RegexpTokenizer
+from nltk.corpus import stopwords
+
 sns.set(style='darkgrid', context='talk', palette='Dark2')
+
+tokenizer = RegexpTokenizer(r'\w+')
+stop_words = stopwords.words('english')
+
+def process_text(headlines):
+    tokens = []
+    for line in headlines:
+        toks = tokenizer.tokenize(line)
+        toks = [t.lower() for t in toks if t.lower() not in stop_words]
+        tokens.extend(toks)
+    
+    return tokens
 
 import praw
 
@@ -84,4 +99,40 @@ sns.barplot(x=counts.index, y=counts, ax=ax)
 ax.set_xticklabels(['Negative', 'Neutral', 'Positive'])
 ax.set_ylabel("Percentage")
 
+plt.show()
+
+# grab positively labeled headlines - get the most common words in those headlines
+
+pos_lines = list(df[df.label == 1].headline)
+
+pos_tokens = process_text(pos_lines)
+pos_freq = nltk.FreqDist(pos_tokens)
+
+print(pos_freq.most_common(20))
+
+y_val = [x[1] for x in pos_freq.most_common()]
+
+fig = plt.figure(figsize=(10,5))
+plt.plot(y_val)
+
+plt.xlabel("Words")
+plt.ylabel("Frequency")
+plt.title("Word Frequency Distribution (Positive)")
+plt.show()
+
+neg_lines = list(df2[df2.label == -1].headline)
+
+neg_tokens = process_text(neg_lines)
+neg_freq = nltk.FreqDist(neg_tokens)
+
+print(neg_freq.most_common(20))
+
+y_val = [x[1] for x in neg_freq.most_common()]
+
+fig = plt.figure(figsize=(10,5))
+plt.plot(y_val)
+
+plt.xlabel("Words")
+plt.ylabel("Frequency")
+plt.title("Word Frequency Distribution (Negative)")
 plt.show()
