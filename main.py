@@ -30,14 +30,24 @@ reddit = praw.Reddit(client_id='LK_PUjO05BqFSg', client_secret='FuE_G7UhRkvIsVNu
 
 subr = 'Reformed' # put the name of the subreddit as a string variable for ease
 
-uniq_id = lqms6k # unique id for the thread
+uniq_id = 'lqms6k' # unique id for the thread
 
 submission = reddit.submission(id=uniq_id)
 
 
-subreddit = reddit.subreddit(subr)
+submission.comments.replace_more(limit=None)
+for top_level_comment in submission.comments:
+    print(top_level_comment.body)
 
-print(subreddit.display_name)
-print(subreddit.title)
-print(subreddit.description)
+
+submission.comments.replace_more(limit=None)
+for comment in submission.comments.list():
+    print(comment.body)
+
+
+# subreddit = reddit.subreddit(subr)
+
+# print(subreddit.display_name)
+# print(subreddit.title)
+# print(subreddit.description)
 
