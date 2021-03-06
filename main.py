@@ -45,11 +45,11 @@ for comment in submission.comments.list():
     print(comment.body)
 
 
-subreddit = reddit.subreddit(subr)
+# subreddit = reddit.subreddit(subr)
 
-print(subreddit.display_name)
-print(subreddit.title)
-print(subreddit.description)
+# print(subreddit.display_name)
+# print(subreddit.title)
+# print(subreddit.description)
 
 # something here
 
