@@ -24,6 +24,9 @@
 # https://towardsdatascience.com/scraping-reddit-with-praw-76efc1d1e1d9
 
 import praw
+import numpy as np
+import pandas as pd
+
 
 # create a reddit instance and provide it with client_id, client_secreat and a user_agent
 reddit = praw.Reddit(client_id='LK_PUjO05BqFSg', client_secret='FuE_G7UhRkvIsVNurMuo0VMO3J85ug', user_agent='scraper project')
@@ -32,17 +35,17 @@ subr = 'Reformed' # put the name of the subreddit as a string variable for ease
 
 uniq_id = 'lqms6k' # unique id for the thread
 
-submission = reddit.submission(id=uniq_id)
+# submission = reddit.submission(id=uniq_id)
 
 
-submission.comments.replace_more(limit=None)
-for top_level_comment in submission.comments:
-    print(top_level_comment.body)
+# submission.comments.replace_more(limit=None)
+# for top_level_comment in submission.comments:
+#     print(top_level_comment.body)
 
 
-submission.comments.replace_more(limit=None)
-for comment in submission.comments.list():
-    print(comment.body)
+# submission.comments.replace_more(limit=None)
+# for comment in submission.comments.list():
+#     print(comment.body)
 
 
 # subreddit = reddit.subreddit(subr)
@@ -54,3 +57,24 @@ for comment in submission.comments.list():
 # something here
 
 # I need to talk with a duck about how to go about doing things
+
+import pprint
+
+sub = reddit.subreddit(subr)
+hot_python = sub.hot(limit=1)
+
+
+
+for submissions in hot_python:
+    if submissions.stickied:
+        print('Title: {}, ups: {}, downs: {}'.format(submissions.title, submissions.ups,submissions.downs))
+        post = {}
+        postlist = []                                                 
+        submissions.comments.replace_more(limit=0)
+        for comment in submissions.comments: 
+            post = {}
+            post['Author'] = comment.author
+            post['Comment'] = comment.body
+            post['Score'] = comment.score
+            postlist.append(post)
+Postdf = pd.DataFrame(postlist)
