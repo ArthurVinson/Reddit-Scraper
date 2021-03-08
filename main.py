@@ -33,7 +33,7 @@ reddit = praw.Reddit(client_id='LK_PUjO05BqFSg', client_secret='FuE_G7UhRkvIsVNu
 
 subr = 'Reformed' # put the name of the subreddit as a string variable for ease
 
-uniq_id = 'lqms6k' # unique id for the thread
+# uniq_id = 'lqms6k' # unique id for the thread
 
 # submission = reddit.submission(id=uniq_id)
 
@@ -61,20 +61,33 @@ uniq_id = 'lqms6k' # unique id for the thread
 import pprint
 
 sub = reddit.subreddit(subr)
-hot_python = sub.hot(limit=1)
+# hot_python = sub.hot(limit=1)
+
+# print(sub.display_name)
+
+# print(sub.title)
+
+# print(sub.description)
+
+
+for submission in sub.top(limit=1):
+    print(submission.title)
+    print(submission.score)
+    print(submission.id)
+    print(submission.url)
 
 
 
-for submissions in hot_python:
-    if submissions.stickied:
-        print('Title: {}, ups: {}, downs: {}'.format(submissions.title, submissions.ups,submissions.downs))
-        post = {}
-        postlist = []                                                 
-        submissions.comments.replace_more(limit=0)
-        for comment in submissions.comments: 
-            post = {}
-            post['Author'] = comment.author
-            post['Comment'] = comment.body
-            post['Score'] = comment.score
-            postlist.append(post)
-Postdf = pd.DataFrame(postlist)
+# for submissions in hot_python:
+#     if submissions.stickied:
+#         print('Title: {}, ups: {}, downs: {}'.format(submissions.title, submissions.ups,submissions.downs))
+#         post = {}
+#         postlist = []                                                 
+#         submissions.comments.replace_more(limit=0)
+#         for comment in submissions.comments: 
+#             post = {}
+#             post['Author'] = comment.author
+#             post['Comment'] = comment.body
+#             post['Score'] = comment.score
+#             postlist.append(post)
+# Postdf = pd.DataFrame(postlist)
