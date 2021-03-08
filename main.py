@@ -25,7 +25,7 @@
 
 import praw
 import numpy as np
-import pandas as pd
+from pandas import DataFrame
 
 
 # create a reddit instance and provide it with client_id, client_secreat and a user_agent
@@ -69,14 +69,35 @@ sub = reddit.subreddit(subr)
 
 # print(sub.description)
 
+example = []
 
-for submission in sub.top(limit=1):
-    print(submission.title)
-    print(submission.score)
-    print(submission.id)
-    print(submission.url)
+for submission in sub.top(limit=10):
+    
+    newlist = []
+    
+    # make a list
+    
+    newlist.append(submission.title)
+    newlist.append(submission.score)
+    newlist.append(submission.id)
+    newlist.append(submission.url)
+    
+    example.append(newlist) #make a list of those lists
+    
+# turn the list into a dataframe
+labels = ['Title', 'Score', 'id', 'URL']
+df = DataFrame(example, columns=labels)
 
+print(df)
 
+    
+    
+    # print(submission.title)
+    # print(submission.score)
+    # print(submission.id)
+    # print(submission.url)
+
+# print(example)
 
 # for submissions in hot_python:
 #     if submissions.stickied:
