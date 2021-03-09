@@ -80,24 +80,29 @@ for submission in sub.new(limit=10):
     
     newlist.append(submission.title)
     newlist.append(submission.score)
+    newlist.append(submission.selftext)
     newlist.append(submission.id)
     newlist.append(submission.url)
     
     example.append(newlist) #make a list of those lists
     
 # turn the list of lists into a dataframe
-labels = ['Title', 'Score', 'id', 'URL']
+labels = ['Title', 'Score','text', 'id', 'URL']
 df = DataFrame(example, columns=labels)
 
 print(df)
 
-fname = subr + 'data'
-
-df.to_csv(fname, index=False, encoding='utf-8')
-
 # turn the dataframe into a CSV
 
+fname = subr + 'data'
+df.to_csv(fname, index=False, encoding='utf-8')
+
+
+
 # run sentiment analysis on the titles 
+
+
+# run sentiment analysis on the submission body
 
 
 # =============================================================================
