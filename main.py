@@ -91,6 +91,9 @@ df = DataFrame(example, columns=labels)
 
 print(df)
 
+fname = subr + 'data'
+
+df.to_csv(fname, index=False, encoding='utf-8')
 
 # turn the dataframe into a CSV
 
