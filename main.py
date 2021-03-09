@@ -71,11 +71,12 @@ sub = reddit.subreddit(subr)
 
 example = []
 
-for submission in sub.top(limit=10):
+for submission in sub.new(limit=10):
     
     newlist = []
     
-    # make a list
+    # make a list of the different submissions and their info
+    # which info is most important? 
     
     newlist.append(submission.title)
     newlist.append(submission.score)
@@ -84,12 +85,23 @@ for submission in sub.top(limit=10):
     
     example.append(newlist) #make a list of those lists
     
-# turn the list into a dataframe
+# turn the list of lists into a dataframe
 labels = ['Title', 'Score', 'id', 'URL']
 df = DataFrame(example, columns=labels)
 
 print(df)
 
+
+# turn the dataframe into a CSV
+
+# run sentiment analysis on the titles 
+
+
+# =============================================================================
+# What I'd like to do is for each submission, run sentiment analysis on each
+# the comments under each and give a summary sentiment of the entire sumbission
+# post and comments.  
+# =============================================================================
     
     
     # print(submission.title)
