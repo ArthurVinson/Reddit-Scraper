@@ -26,6 +26,7 @@
 import praw
 import numpy as np
 from pandas import DataFrame
+from textblob import TextBlob
 
 
 # create a reddit instance and provide it with client_id, client_secreat and a user_agent
@@ -71,7 +72,7 @@ sub = reddit.subreddit(subr)
 
 example = []
 
-for submission in sub.new(limit=10):
+for submission in sub.new(limit=1):
     
     newlist = []
     
@@ -85,6 +86,13 @@ for submission in sub.new(limit=10):
     newlist.append(submission.url)
     
     example.append(newlist) #make a list of those lists
+    
+    
+blob = TextBlob(submission.title)    
+print(blob)
+
+print(blob.sentiment)
+    
     
 # turn the list of lists into a dataframe
 labels = ['Title', 'Score','text', 'id', 'URL']
