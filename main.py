@@ -93,6 +93,7 @@ print(blob)
 
 print(blob.sentiment)
     
+# why isn't it picking up on anything ?
     
 # turn the list of lists into a dataframe
 labels = ['Title', 'Score','text', 'id', 'URL']
