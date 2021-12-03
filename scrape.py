@@ -24,7 +24,7 @@ for submission in reddit.subreddit('Reformed').new(limit=None):
     headlines.add(submission.title)
 print(len(headlines))
 
-# df = pd.DataFrame(headlines)
+df = pd.DataFrame(headlines)
 
 # def subreddit_scrape(subreddit):
     
