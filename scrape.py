@@ -19,12 +19,20 @@ reddit = praw.Reddit(
     client_secret='FuE_G7UhRkvIsVNurMuo0VMO3J85ug', 
     user_agent='scraper project')
 
-headlines = set()
-for submission in reddit.subreddit('Reformed').new(limit=None):
-    headlines.add(submission.title)
-print(len(headlines))
+# get 10 hot posts from the Reformed subreddit
 
-df = pd.DataFrame(headlines)
+hot_posts = reddit.subreddit('Reformed').hot(limit=10)
+for post in hot_posts:
+    print(post.title)
 
-# def subreddit_scrape(subreddit):
+
+
+# headlines = set()
+# for submission in reddit.subreddit('Reformed').new(limit=None):
+#     headlines.add(submission.title)
+# print(len(headlines))
+
+# df = pd.DataFrame(headlines)
+
+# # def subreddit_scrape(subreddit):
     
