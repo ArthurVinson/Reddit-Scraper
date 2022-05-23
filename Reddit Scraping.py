@@ -12,6 +12,7 @@ import numpy as np
 import matplotlib as plt
 import seaborn as sns
 import datetime
+import textblob
 
 # from textblob import TextBlob
 from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
@@ -32,7 +33,7 @@ reddit = praw.Reddit(
 
 # Subreddit to Scrape
 
-subr = 'Reformed'
+subr = 'Pathfinder2e'
 
 # iterate over an array, list, etc BACKWARDS (it's faster)
 
@@ -116,7 +117,7 @@ df.head()
 
 # Saving to a csv named after the subreddit
 
-# now = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+now = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
-# df.to_csv(f'top_{subr}_posts_{now}.csv')
-# df.to_csv('file.csv')
+df.to_csv(f'top_{subr}_posts_{now}.csv')
+df.to_csv('file.csv')
