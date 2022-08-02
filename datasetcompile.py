@@ -92,7 +92,7 @@ for year in range(start_year, end_year+1):
             before=ts_before,
             filter=['id'],
             subreddit=subreddit,
-            limit=1000
+            limit=20
         )
 
 ### BLOCK 5 ###
