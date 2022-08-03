@@ -78,17 +78,18 @@ for year in range(start_year, end_year+1):
     # these are used to provide input to the PSAW request
     ts_after = int(dt.datetime(year, 1, 1).timestamp())
     ts_before = int(dt.datetime(year+1, 1, 1).timestamp())
-    
+        
     #task to do - allow for arbitrary ranges instead of years by using epochs directly
 
-"""
-BLOCK 2 
 
-For each subreddit in subreddits, create the corresponding directory inside the
-current year's directory, and define the path for the CSV file to store the 
-corresponding posts
+# =============================================================================
+# BLOCK 2 
+# 
+# For each subreddit in subreddits, create the corresponding directory inside
+# the # current year's directory, and define the path for the CSV file to store
+# the # corresponding posts
+# =============================================================================
 
-"""
     # for each subreddit in subreddits
     for subreddit in subreddits:
         start_time = time.time() # start logging time for log_action
@@ -106,13 +107,14 @@ corresponding posts
         # define the CSV path to store corresponding posts
         submissions_csv_path = str(year) + '-' + subreddit + '-submissions.csv'
         
-"""
-BLOCK 3 
-
-Define the Python dictionary on which each post will be stored in memory, to be
-later saved to the CSV file defined. 
-
-"""
+# =============================================================================
+# 
+# BLOCK 3 
+# 
+# Define the Python dictionary on which each post will be stored in memory, to
+# be later saved to the CSV file defined. 
+# 
+# =============================================================================
 
         submissions_dict = {
             "id" : [],
@@ -126,15 +128,17 @@ later saved to the CSV file defined.
 
 # task to do - adopt naming scheme from Reddit Scraping.py
 
-""" 
-BLOCK 4
+# =============================================================================
+#  
+# BLOCK 4
+# 
+# Use PSAW to get the submissions id of a specific set of posts: those that 
+# exist with the starting and ending times, in the specific subreddit. Also
+# limit the number retrieved to limit. Use the Python keyword None to go over
+# all posts in the time frame
+#
+# =============================================================================
 
-Use PSAW to get the submissions id of a specific set of posts: those that 
-exist with the starting and ending times, in the specific subreddit. Also
-limit the number retrieved to limit. Use the Python keyword None to go over
-all posts in the time frame
- 
-"""
         # use PSAW to get id of submissions in time interval
         # first create an iterator
         gen = api.search_submissions(
@@ -145,13 +149,14 @@ all posts in the time frame
             limit=20 # how many to retrieve in the time frame
         )
 
-"""
-BLOCK 5
-
-For each post or submission in the iterator, use the id we retrieved to get
-the full data we want from PRAW and add it to the dictionary.
-
- """
+# =============================================================================
+# 
+# BLOCK 5
+# 
+# For each post or submission in the iterator, use the id we retrieved to get
+# the full data we want from PRAW and add it to the dictionary.
+# 
+# =============================================================================
 
         # use PRAW to get actual info and traverse comment tree
         # for every submission in the iterator gen
@@ -169,13 +174,14 @@ the full data we want from PRAW and add it to the dictionary.
             submissions_dict["created_utc"].append(submission_praw.created_utc)
             submissions_dict["selftext"].append(submission_praw.selftext)
 
-"""
-BLOCK 6
-
-Each submission has a resulting comment thread. Define the file path to a CSV
-for the comment thread. Define the dictionary to store comment thread data.
-
-""" 
+# =============================================================================
+#
+# BLOCK 6
+# 
+# Each submission has a resulting comment thread. Define the file path to a CSV
+# for the comment thread. Define the dictionary to store comment thread data.
+# 
+# =============================================================================
 
             submission_comments_csv_path = str(year) + '-' + subreddit + '-submission_' + submission_id + '-comments.csv'
             submission_comments_dict = {
@@ -183,15 +189,17 @@ for the comment thread. Define the dictionary to store comment thread data.
                 "comment_parent_id" : [],
                 "comment_body" : [],
                 "comment_link_id" : [],
+                "comment_created" : []
             }
 
-"""
-BLOCK 7
-
-For each comment in the comment thread, retrieve the data and store it in the
-dictionary defined. Save it to the CSV file.
-
-"""
+# =============================================================================
+# 
+# BLOCK 7
+# 
+# For each comment in the comment thread, retrieve the data and store it in the
+# dictionary defined. Save it to the CSV file.
+# 
+# =============================================================================
 
             # extend the comment tree all the way
             submission_praw.comments.replace_more(limit=None)
@@ -201,18 +209,19 @@ dictionary defined. Save it to the CSV file.
                 submission_comments_dict["comment_parent_id"].append(comment.parent_id)
                 submission_comments_dict["comment_body"].append(comment.body)
                 submission_comments_dict["comment_link_id"].append(comment.link_id)
+                submission_comments_dict["comment_created"].append(comment.created)
 
             # for each submission save separate csv comment file
             pd.DataFrame(submission_comments_dict).to_csv(subredditdirpath + '/' + submission_comments_csv_path,
                                                           index=False)
 
-"""
-BLOCK 8
-
-Save the constructed dictionary of all the submissions to a CSV file
-
-"""
-
+# =============================================================================
+# 
+# BLOCK 8
+# 
+# Save the constructed dictionary of all the submissions to a CSV file
+#  
+# =============================================================================
         # single csv file with all submissions
         pd.DataFrame(submissions_dict).to_csv(subredditdirpath + '/' + submissions_csv_path,
                                               index=False)
