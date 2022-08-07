@@ -31,4 +31,7 @@ print(full_path)
 # retrieve the text in the dataset and compile it into a single string
 
 
+# iterate over the csv's in a year's 
+
+
 # load the text here
