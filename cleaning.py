@@ -7,42 +7,117 @@ https://towardsdatascience.com/nlp-in-python-data-cleaning-6313a404a470
 Created on Fri May 27 11:05:51 2022
 
 @author: Arthur Vinson
+
+Inspired by https://levelup.gitconnected.com/reddit-sentiment-analysis-with-python-c13062b862f6
 """
 
-import os
+# imports
+
+
+import cleantext
 import pandas as pd
+import re
+import emoji
+from textblob import TextBlob
+import nltk
+from nltk.corpus import stopwords
 
-path = '.\my-dataset'
+# load up text csv
 
+year = 2020
+subreddit = 'Pathfinder2e'
 
-# loop through csv in directory
+base = './my-dataset/'
+textdir = base + 'textfiles'
 
-for root, dirs, files in os.walk(path):
-    for i in files:
+text_filename_path = textdir + '/' + subreddit + '-' + str(year) + '.csv'
 
-        basename, ext = os.path.splitext(i)
-        
-        # create file: csvfilename_cleaned
-        # basename + '_cleaned' + '.csv' 
-        
-        df = pd.read_csv(i)
-        
-        print(df.head(1))
-        
-        
-        
-        # load in submissions csv into a data frame
+stop = stopwords.words('english')
 
 
+data = pd.read_csv(text_filename_path)[['0']]
 
-# loop through rows
+# rename column '0' to 'text'
 
-# take a look at the selftext column, if Null, (deleted) or (removed), delete 
-# the row
+data.rename(columns={'0':'text'}, inplace=True)
 
-# clear out the punct
+# create new column in data DF named 'tb sentiment', fill it with the TextBlob sentiment analysis of the 'text' column
 
-# clear out stopwords
+data['tb sentiment'] = data['text'].apply(lambda raw: TextBlob(raw).sentiment)
+
+data['tb polarity'] = data['text'].apply(lambda raw: TextBlob(raw).polarity)
+
+data['tb subjectivity'] = data['text'].apply(lambda raw: TextBlob(raw).subjectivity)
 
 
-# take the selftext - 
+tot
+
+# sentiment is just a two floats.
+
+
+
+
+
+
+# # convert list 'text' to string object
+
+# list1 = text
+
+# list1 = [str(i) for i in list1] # map to a list of strings
+
+# raw = ' , '.join(list1)  #join all the strings separated by a comma
+
+# # remove emojis
+
+# string_emojiless = emoji.demojize(raw)
+
+
+# # remove urls
+
+# no_urls = re.sub(r'http?\S+', '', string_emojiless)
+
+# # remove linebreaks
+
+# no_linebreaks = no_urls.replace('\n', '')
+
+# # lower case
+
+# lower_case = no_linebreaks.lower()
+
+# # remove stopword
+
+# blob = TextBlob(lower_case)
+
+
+
+# # tokenize
+
+# #text_obj = TextBlob(clean_text)
+
+# #words_obj = blob.words
+
+# sentence_obj = blob.sentences
+
+
+# # remove stopwords
+
+# # text_obj2 = [x for x in text_obj if x not in stop]
+
+
+# # normalize words via lemmatizing
+
+
+
+
+# # print(text_obj.sentiment)
+# # print(text_obj.sentiment_assessments)
+
+
+# # visualize word counts
+
+# frequency = text_obj.word_counts.items()
+
+# items_arg = text_obj.word_counts.items()
+
+# items = [item for item in frequency if item[0] not in nltk.corpus.stopwords.words('english')]
+

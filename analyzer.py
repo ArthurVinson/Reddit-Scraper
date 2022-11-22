@@ -8,6 +8,8 @@ Created on Sun Aug 28 22:51:42 2022
 
 Inspired by https://levelup.gitconnected.com/simple-nlp-in-python-2cb3243239d3
 
+
+
 """
 
 from textblob import TextBlob
@@ -20,4 +22,12 @@ input_text = '''I am a life long Star Wars fan and this was the first time I cam
 
 analysis = TextBlob(input_text).sentiment
 print(analysis)
+
+
+# retrieve from textfiles
+
+
+
+# then work magic
+
 
