@@ -17,8 +17,8 @@ import os
 
 # Construct the path to the dataset folder
 
-year = 2020
-subreddit = 'Pathfinder2e'
+year = 2022
+subreddit = 'MouseGuard'
 comment_text = pd.DataFrame() # empty DataFrame
 
 base = './my-dataset/'

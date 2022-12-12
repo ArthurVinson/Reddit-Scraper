@@ -21,16 +21,23 @@ import emoji
 from textblob import TextBlob
 import nltk
 from nltk.corpus import stopwords
+import matplotlib.pyplot as plt
 
 # load up text csv
 
-year = 2020
-subreddit = 'Pathfinder2e'
+year = 2019
+subreddit = 'shadowrun'
 
 base = './my-dataset/'
 textdir = base + 'textfiles'
+datadir = base + 'datafiles'
+
+plot_title = 'TextBlob Analysis of ' + subreddit + ' Subreddit for year ' + str(year)
+
 
 text_filename_path = textdir + '/' + subreddit + '-' + str(year) + '.csv'
+
+data_filename_path = datadir + '/' + subreddit + '-' + str(year) + '.csv'
 
 stop = stopwords.words('english')
 
@@ -50,13 +57,21 @@ data['tb polarity'] = data['text'].apply(lambda raw: TextBlob(raw).polarity)
 data['tb subjectivity'] = data['text'].apply(lambda raw: TextBlob(raw).subjectivity)
 
 
-tot
+
+
+average_polarity = (data['tb polarity'].sum())/(len(data['tb polarity']))
+
+average_subjectivity = (data['tb subjectivity'].sum())/(len(data['tb subjectivity']))
+
+
+plt.scatter(data['tb subjectivity'], data['tb polarity'], s=1)
+plt.title(plot_title)
+plt.xlabel("Subjectivity")
+plt.ylabel("Polarity")
+
+data.to_csv(data_filename_path)
 
 # sentiment is just a two floats.
-
-
-
-
 
 
 # # convert list 'text' to string object

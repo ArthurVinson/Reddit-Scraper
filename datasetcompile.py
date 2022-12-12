@@ -33,9 +33,9 @@ reddit = praw.Reddit(
 
 # subreddits = ['Pathfinder2e','MouseGuard','Pathfinder_RPG','DnD','CallofCthulhu','shadowrun']
 
-subreddits = ['Pathfinder2e']
-start_year = 2020
-end_year = 2021
+subreddits = ['Pathfinder_RPG']
+start_year = 2019
+end_year = 2022
 
 # directory on which to store the data
 basecorpus = './my-dataset/'
@@ -146,7 +146,7 @@ for year in range(start_year, end_year+1):
             before=ts_before, # ending timestamp
             filter=['id'], # only get the id, nothing else
             subreddit=subreddit, # specific subreddit
-            limit=20 # how many to retrieve in the time frame
+            limit=None # how many to retrieve in the time frame
         )
 
 # =============================================================================

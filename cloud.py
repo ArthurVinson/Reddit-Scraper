@@ -21,34 +21,34 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
+
 year = 2020
 subreddit = 'Pathfinder2e'
 text = ""
 
-base = './my-dataset/'
-dirpath = base + str(year)
+base = './my-dataset/textfiles'
 
-subredditdirpath = dirpath + '/' + subreddit
-
-submissions_csv_path = str(year) + '-' + subreddit + '-submissions.csv'
-
-full_path = subredditdirpath + '/' + submissions_csv_path
+full_path = base + '/' + subreddit + '-' + str(year) + '.csv'
 
 print(full_path)
 
-stopwords = set(STOPWORDS)
+
 
 # load in the dataframe
 
-df = pd.read_csv(full_path, index_col=0)
+df = pd.read_csv(full_path)[['0']]
 
-# first 5 rows of the dataset
+df.rename(columns={"0":"selftext"}, inplace=True)
 
-print(df.head())
+# dataframe to one large string variable
+text = " ".join(cat.split()[0] for cat in df.selftext)
 
-text = " ".join(selftext for stuff in df.selftext)
+stopwords = set(STOPWORDS)
 
-wordcloud = WordCloud().generate(text)
+stopwords.add('deleted')
+stopwords.add('removed')
+
+wordcloud = WordCloud(stopwords=stopwords).generate(text)
 
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
