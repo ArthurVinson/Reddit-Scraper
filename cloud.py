@@ -22,8 +22,8 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
 
-year = 2020
-subreddit = 'Pathfinder2e'
+year = 2021
+subreddit = 'Pathfinder_RPG'
 text = ""
 
 base = './my-dataset/textfiles'
@@ -54,6 +54,9 @@ plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
 plt.show()
 
+cloud_filename = './my-dataset/datafiles' + '/' + subreddit + '-' + str(year) + '-wordcloud.png' 
+
+wordcloud.to_file(cloud_filename)
 
 # Clean out stop words and [removed] posts
 

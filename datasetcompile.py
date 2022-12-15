@@ -34,8 +34,8 @@ reddit = praw.Reddit(
 # subreddits = ['Pathfinder2e','MouseGuard','Pathfinder_RPG','DnD','CallofCthulhu','shadowrun']
 
 subreddits = ['Pathfinder_RPG']
-start_year = 2019
-end_year = 2022
+start_year = 2018
+end_year = 2018
 
 # directory on which to store the data
 basecorpus = './my-dataset/'

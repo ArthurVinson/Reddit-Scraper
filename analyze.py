@@ -17,7 +17,6 @@ Inspired by https://levelup.gitconnected.com/reddit-sentiment-analysis-with-pyth
 import cleantext
 import pandas as pd
 import re
-import emoji
 from textblob import TextBlob
 import nltk
 from nltk.corpus import stopwords
@@ -25,8 +24,8 @@ import matplotlib.pyplot as plt
 
 # load up text csv
 
-year = 2019
-subreddit = 'shadowrun'
+year = 2021
+subreddit = 'Pathfinder_RPG'
 
 base = './my-dataset/'
 textdir = base + 'textfiles'
@@ -38,6 +37,8 @@ plot_title = 'TextBlob Analysis of ' + subreddit + ' Subreddit for year ' + str(
 text_filename_path = textdir + '/' + subreddit + '-' + str(year) + '.csv'
 
 data_filename_path = datadir + '/' + subreddit + '-' + str(year) + '.csv'
+
+plot_filename_path = datadir + '/' + subreddit + '-' + str(year) + '.png'
 
 stop = stopwords.words('english')
 
@@ -56,8 +57,8 @@ data['tb polarity'] = data['text'].apply(lambda raw: TextBlob(raw).polarity)
 
 data['tb subjectivity'] = data['text'].apply(lambda raw: TextBlob(raw).subjectivity)
 
-
-
+data['Polarity'] = data['tb polarity'].apply(lambda x: 'Positive' if x > 0 else ('Negative' if x < 0 else 'Neutral'))
+data['Subjectivity'] = data['tb subjectivity'].apply(lambda x: 'More Objective' if x <= .5 else 'More Subjective')
 
 average_polarity = (data['tb polarity'].sum())/(len(data['tb polarity']))
 
@@ -69,6 +70,8 @@ plt.title(plot_title)
 plt.xlabel("Subjectivity")
 plt.ylabel("Polarity")
 
+
+plt.savefig(plot_filename_path)
 data.to_csv(data_filename_path)
 
 # sentiment is just a two floats.
@@ -84,12 +87,10 @@ data.to_csv(data_filename_path)
 
 # # remove emojis
 
-# string_emojiless = emoji.demojize(raw)
 
 
-# # remove urls
 
-# no_urls = re.sub(r'http?\S+', '', string_emojiless)
+
 
 # # remove linebreaks
 
