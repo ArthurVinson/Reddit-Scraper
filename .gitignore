@@ -1,4 +1,6 @@
 
 *.png
 *.csv
-__pycache__/wordcloud.cpython-310.pyc
+.ipynb_checkpoints
+__pycache__/
+learning/
