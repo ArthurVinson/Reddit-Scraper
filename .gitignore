@@ -1,3 +1,4 @@
 
+*.png
 *.csv
 __pycache__/wordcloud.cpython-310.pyc

@@ -45,7 +45,7 @@ basedir = './my-dataset/imagefiles/'
 # year = ['2019', '2020', '2021']
 
 subreddit = 'MouseGuard'
-year = '2020'
+year = '2021'
 
 """
 for subr in subreddit:
