@@ -25,9 +25,9 @@ api = PushshiftAPI()
 
 # to use PRAW (reddit credentials)
 reddit = praw.Reddit(
-    client_id='LK_PUjO05BqFSg', 
-    client_secret='FuE_G7UhRkvIsVNurMuo0VMO3J85ug', 
-    user_agent='scraper project',
+    client_id='', 
+    client_secret='', 
+    user_agent='',
     check_for_async=False)
 
 
