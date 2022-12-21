@@ -1,12 +1,10 @@
 
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
-.csv
+*.csv
 __pycache__/
-learning/
+/learning/
 my-dataset/2019
 my-dataset/2020
 my-dataset/2021
 my-dataset/2022
-my-dataset/datafiles
-my-dataset/textfiles
