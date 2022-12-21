@@ -3,7 +3,6 @@
 */.ipynb_checkpoints/*
 *.csv
 __pycache__/
-/learning/
 my-dataset/2019
 my-dataset/2020
 my-dataset/2021
