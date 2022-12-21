@@ -31,6 +31,24 @@ After the dataset has been compiled, run the scripts to analyze the data and tur
 
 The included Jupyter notebook `Reddit Scraping Project` combines the functionality of analyze.py, analyze2.py and cloud.py and can be run on its own in lieu of them.
 
+### Python Libraries Used
+- pandas
+- datatime
+- os
+- praw
+- psaw
+- fnmatch
+- numpy
+- matplotlib.pyplot
+- wordcloud
+- textblob
+- nltk
+- seaborn
+- plotly
+- emoji
+- re
+
+
 ### Limitations
 - Partially completed subreddits in a folder will cause `datacompile.py` to skip over them entirely (it won't fill them up)
 
@@ -50,7 +68,8 @@ The included Jupyter notebook `Reddit Scraping Project` combines the functionali
 - More informative, possibly interactive visualizations
 
 ## Screenshots
-[(https://github.com/ArthurVinson/Reddit-Scraper/blob/main/my-dataset/imagefiles/Pathfinder2e-2019.png)]
+![Pathfinder 2e, 2019](https://github.com/ArthurVinson/Reddit-Scraper/blob/main/my-dataset/imagefiles/Pathfinder2e-2019.png)
+![Pathfinder 2e, 2019 wordcloud](https://github.com/ArthurVinson/Reddit-Scraper/blob/main/my-dataset/imagefiles/Pathfinder2e-2019-wordcloud.png)
 
 
 
