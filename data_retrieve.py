@@ -17,7 +17,7 @@ import os
 
 # Construct the path to the dataset folder
 
-year = 2021
+year = 2019
 subreddit = 'shadowrun'
 comment_text = pd.DataFrame() # empty DataFrame
 

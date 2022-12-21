@@ -25,11 +25,12 @@ import matplotlib.pyplot as plt
 # load up text csv
 
 year = 2021
-subreddit = 'Pathfinder_RPG'
+subreddit = 'CallofCthulhu'
 
 base = './my-dataset/'
 textdir = base + 'textfiles'
 datadir = base + 'datafiles'
+imagedir = base + 'imagefiles'
 
 plot_title = 'TextBlob Analysis of ' + subreddit + ' Subreddit for year ' + str(year)
 
@@ -38,7 +39,7 @@ text_filename_path = textdir + '/' + subreddit + '-' + str(year) + '.csv'
 
 data_filename_path = datadir + '/' + subreddit + '-' + str(year) + '.csv'
 
-plot_filename_path = datadir + '/' + subreddit + '-' + str(year) + '.png'
+plot_filename_path = imagedir + '/' + subreddit + '-' + str(year) + '.png'
 
 stop = stopwords.words('english')
 

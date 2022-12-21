@@ -101,7 +101,7 @@ clean2 = ([lemmatizer.lemmatize(w) for w in clean])
 sia = SIA()
 results = []
 
-for sentences in clean:
+for sentences in clean2:
     pol_score = sia.polarity_scores(sentences)
     pol_score['words'] = sentences
     results.append(pol_score)
